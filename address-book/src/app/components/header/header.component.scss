@@ -1,0 +1,13 @@
+@import "src/styles.scss";
+
+.banner {
+    background-color: mat-color($address-book-primary);
+    height: 50px; 
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-text {
+    color: white;
+}
