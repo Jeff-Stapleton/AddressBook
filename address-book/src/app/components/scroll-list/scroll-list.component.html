@@ -1,9 +1,0 @@
-<div class="container">
-    <cdk-virtual-scroll-viewport itemSize="50" class="scroll-viewport">
-      <app-list-item *cdkVirtualFor="let contact of contacts" [contact]="contact" (click)="editContact(contact)"></app-list-item>
-    </cdk-virtual-scroll-viewport>
-  
-    <button mat-fab class="floating-action-button" (click)="addContact()" aria-label="Example icon button with a delete icon">
-      <mat-icon>person_add</mat-icon>
-    </button>
-  </div>

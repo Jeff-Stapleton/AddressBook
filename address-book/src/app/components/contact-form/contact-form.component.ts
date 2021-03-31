@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UUID } from 'angular2-uuid';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Contact } from 'src/app/models/contact.model';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -14,20 +15,30 @@ export class ContactFormComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   address = new FormControl('');
 
+  title : string = "";
+  contact : Contact = {id: "", name: "", address: "", email: "", phone: "", pendingDelete: false};
+
   constructor(
     public dialogRef: MatDialogRef<ContactFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Contact,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
 
   ngOnInit(): void {
+    this.title = this.data.title;
+    this.contact = Object.assign({}, this.data.contact);
+    if (!this.data.contact.id) {
+      this.contact.id = UUID.UUID();
+    }
   }
 
   cancel(): void {
     this.dialogRef.close();
   }
 
-  add(): void {
-    this.dialogRef.close();
+  commit(): void {
+    this.data.contact = Object.assign({}, this.contact);;
+  
+    this.dialogRef.close(this.data);
   }
 }
