@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add New Contact</h1>
+
+<mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [formControl]="name" placeholder="John Doe" [(ngModel)]="data.name">
+    <mat-error *ngIf="name.invalid">Name is required</mat-error>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Phone</mat-label>
+    <input matInput [formControl]="phone" placeholder="(801) 111-1111" [(ngModel)]="data.phone">
+    <mat-error *ngIf="phone.invalid">Please enter a valid phone number</mat-error>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [formControl]="email" placeholder="john.doe@example.com" [(ngModel)]="data.email">
+    <mat-error *ngIf="email.invalid">Please enter a valid email</mat-error>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Address</mat-label>
+    <input matInput [formControl]="address" placeholder="123 Main St." [(ngModel)]="data.address">
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>
